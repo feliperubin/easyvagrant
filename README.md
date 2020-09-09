@@ -47,7 +47,7 @@ vagrant up --provider=[vmware_fusion|parallels|virtualbox]
 vagrant destroy -f
 ```
 
-**Demo**
+**hosts.yml**
 
 ```yaml
 - name: master
