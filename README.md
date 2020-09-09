@@ -25,3 +25,9 @@ It should be pretty straightforward to implement new providers, with the excepti
   > Run script files or single commands with arguments during provisioning in privileged mode or not.
 - *Shares*
   > Synchronise or copy directories and (copy) files to instances, specifying ownership, permissions, location, and mount options.
+
+
+**Examples**
+
+```yaml
+```
