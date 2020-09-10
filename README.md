@@ -63,6 +63,7 @@ vagrant destroy -f
     - kind: public_network # NIC:eth2, Provider Network
       bridge: en0 # Ethernet Card
       auto_config: false
+  script:
     - path: write_to_file.sh
       args: [/home/vagrant/i_am_again_$$.txt,"$$"] # Replaced by replicaid, defaults to 0
       privileged: false
