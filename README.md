@@ -47,8 +47,10 @@ vagrant up --provider=[vmware_fusion|parallels|virtualbox]
 vagrant destroy -f
 ```
 
-**hosts.yml**
 
+**Configuration File Example**
+
+Note: This is just an example, the files referenced here must exist for it to run
 ```yaml
 - name: master
   box: bento/ubuntu-18.04
@@ -64,9 +66,9 @@ vagrant destroy -f
       bridge: en0 # Ethernet Card
       auto_config: false
   script:
-    - path: write_to_file.sh
-      args: [/home/vagrant/i_am_again_$$.txt,"$$"] # Replaced by replicaid, defaults to 0
-      privileged: false
+  - path: write_to_file.sh # Run a script
+    args: [hi,"$$"] # arg1: hi, arg2: Replaced by replicaid, defaults to 0
+    privileged: false
 
 # This creates two nodes: node-100 10.0.0.3 , node-101 10.0.0.4
 - name: "node-" #
@@ -106,11 +108,11 @@ vagrant destroy -f
       owner: "vagrant"
       group: "vagrant"
       sync: true
-    - source: "dataset.csv"
+    - source: "dataset.csv" # copy a file
       target: "/home/vagrant/dataset.csv"
       options: ["uid=501", "gid=1000"]
       sync: false
-    - source: "./project/src"
+    - source: "./project/src" # Copy a project folder
       target: "/home/vagrant/code"
       sync: false
 ```

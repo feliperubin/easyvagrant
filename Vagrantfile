@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 # Author: Felipe Pfeifer Rubin
 # Contact: felipe.rubin@edu.pucrs.br
-# Date: First Semester of 2020
 # About: A Vagrantfile that allows the
 # provisioning of a multi-machine environment
 # by reading a quite simple, YAML file definition.
@@ -11,7 +10,16 @@
 
 require 'yaml'
 require 'ipaddr'
-hosts = YAML.load_file(File.join(File.dirname(__FILE__), 'hosts.yml'))
+
+hosts = nil
+if File.exists?(File.join(File.dirname(__FILE__), 'hosts.yaml'))
+  hosts = YAML.load_file(File.join(File.dirname(__FILE__), 'hosts.yaml'))
+elsif File.exists?(File.join(File.dirname(__FILE__), 'hosts.yml'))
+  hosts = YAML.load_file(File.join(File.dirname(__FILE__), 'hosts.yml'))
+else
+  puts "No hosts.yaml found, exited."
+  exit(0)
+end
 
 # Discover the provider
 provider = (ENV['VAGRANT_DEFAULT_PROVIDER'] || :virtualbox).to_sym
